@@ -16,7 +16,7 @@ function NotesListPage() {
     },[])
 
     let getNotes = async () => {
-        let response = await fetch('${API_URL}/api/notes')
+        let response = await fetch(`${API_URL}/api/notes`)
         let data = await response.json()
         // console.log(data)
         setNotes(data)
