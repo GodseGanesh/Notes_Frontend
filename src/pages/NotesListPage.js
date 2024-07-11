@@ -6,7 +6,7 @@ import AddNote from '../compoents/AddNote';
 
 function NotesListPage() {
 
-    const API_URL = process.env.REACT_APP_API_URL;
+    
 
     let [notes,setNotes] = useState([])
 
@@ -16,7 +16,7 @@ function NotesListPage() {
     },[])
 
     let getNotes = async () => {
-        let response = await fetch(`${API_URL}/api/notes`)
+        let response = await fetch('https://ganeshrgodse.pythonanywhere.com/api/notes')
         let data = await response.json()
         console.log(data)
         console.log(response)
