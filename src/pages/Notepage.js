@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { ReactComponent as ArrowLeft } from "../assets/arrow-left.svg";
 import { useParams, useNavigate } from "react-router-dom";
 
+
 function Notepage(history) {
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const getCsrfToken = () => {
     return document.cookie
       .split(";")
@@ -33,7 +36,7 @@ function Notepage(history) {
   let getNote = async () => {
     if (noteId === "new") return;
 
-    let response = await fetch(`/api/note/${noteId}/`);
+    let response = await fetch(`${API_URL}/api/note/${noteId}/`);
 
     let data = await response.json();
 
@@ -41,7 +44,7 @@ function Notepage(history) {
   };
 
   let updateNote = async () => {
-    fetch(`/api/note/${noteId}/`, {
+    fetch(`${API_URL}/api/note/${noteId}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +57,7 @@ function Notepage(history) {
 
 
   let deleteNote = () => {
-    fetch(`/api/note/${noteId}/`, {
+    fetch(`${API_URL}/api/note/${noteId}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +69,7 @@ function Notepage(history) {
   };
 
   let createNote = async () => {
-    fetch(`/api/notes/`, {
+    fetch(`${API_URL}/api/notes/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
