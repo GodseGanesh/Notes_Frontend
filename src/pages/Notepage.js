@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 
 function Notepage(history) {
-  const API_URL = process.env.REACT_APP_API_URL;
+  
 
   const getCsrfToken = () => {
     return document.cookie
@@ -36,7 +36,7 @@ function Notepage(history) {
   let getNote = async () => {
     if (noteId === "new") return;
 
-    let response = await fetch(`${API_URL}/api/note/${noteId}/`);
+    let response = await fetch('https://ganeshrgodse.pythonanywhere.com/api/note/${noteId}/');
 
     let data = await response.json();
 
@@ -44,7 +44,7 @@ function Notepage(history) {
   };
 
   let updateNote = async () => {
-    fetch(`${API_URL}/api/note/${noteId}/`, {
+    fetch('https://ganeshrgodse.pythonanywhere.com/api/note/${noteId}/', {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function Notepage(history) {
 
 
   let deleteNote = () => {
-    fetch(`${API_URL}/api/note/${noteId}/`, {
+    fetch('https://ganeshrgodse.pythonanywhere.com/api/note/${noteId}/', {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function Notepage(history) {
   };
 
   let createNote = async () => {
-    fetch(`${API_URL}/api/notes/`, {
+    fetch('https://ganeshrgodse.pythonanywhere.com/api/notes/', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
