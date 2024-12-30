@@ -2,11 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { ReactComponent as ArrowLeft } from "../assets/arrow-left.svg";
 import { useParams, useNavigate } from "react-router-dom";
-
+import Header from "../compoents/Header";
 
 function Notepage(history) {
-  
-
   const getCsrfToken = () => {
     return document.cookie
       .split(";")
@@ -18,17 +16,12 @@ function Notepage(history) {
 
   const csrfToken = getCsrfToken();
 
-
-
-
-
   const { noteId } = useParams();
 
   const navigate = useNavigate();
 
   let [note, setNote] = useState(null);
 
-  
   useEffect(() => {
     getNote();
   }, [noteId]);
@@ -36,7 +29,9 @@ function Notepage(history) {
   let getNote = async () => {
     if (noteId === "new") return;
 
-    let response = await fetch(`https://ganeshgodse19.pythonanywhere.com/api/note/${noteId}/`);
+    let response = await fetch(
+      `https://ganeshgodse19.pythonanywhere.com/api/note/${noteId}/`
+    );
 
     let data = await response.json();
 
@@ -52,9 +47,7 @@ function Notepage(history) {
       },
       body: JSON.stringify(note),
     });
-   
   };
-
 
   let deleteNote = () => {
     fetch(`https://ganeshgodse19.pythonanywhere.com/api/note/${noteId}/`, {
@@ -62,14 +55,13 @@ function Notepage(history) {
       headers: {
         "Content-Type": "application/json",
         "X-CSRFToken": csrfToken,
-        
       },
     });
     navigate("/");
   };
 
   let createNote = async () => {
-    fetch('https://ganeshgodse19.pythonanywhere.com/api/notes/', {
+    fetch("https://ganeshgodse19.pythonanywhere.com/api/notes/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,11 +69,7 @@ function Notepage(history) {
       },
       body: JSON.stringify(note),
     });
-    
-
-   
   };
-
 
   let handleSubmit = async () => {
     if (noteId === "new" && note === null) {
@@ -96,7 +84,6 @@ function Notepage(history) {
     } else if (noteId === "new" && note.body !== null) {
       await createNote();
     }
-    
 
     navigate("/");
   };
@@ -105,28 +92,29 @@ function Notepage(history) {
     setNote((note) => ({ ...note, body: value }));
   };
 
-
-
-
   return (
-    <div className="note">
-      <div className="note-header">
-        <h3>
-          <ArrowLeft onClick={handleSubmit} />
-        </h3>
-        {noteId !== "new" ? (
-          <button onClick={deleteNote}>Delete</button>
-        ) : (
-          <button onClick={handleSubmit}>Done</button>
-        )}
+      <div className="app">
+        <Header />
+        <div className="note">
+          <div className="note-header">
+            <h3>
+              <ArrowLeft onClick={handleSubmit} />
+            </h3>
+            {noteId !== "new" ? (
+              <button onClick={deleteNote}>Delete</button>
+            ) : (
+              <button onClick={handleSubmit}>Done</button>
+            )}
+          </div>
+          <textarea
+            onChange={(e) => {
+              handleChange(e.target.value);
+            }}
+            value={note?.body}
+          ></textarea>
+        </div>
       </div>
-      <textarea
-        onChange={(e) => {
-          handleChange(e.target.value);
-        }}
-        value={note?.body}
-      ></textarea>
-    </div>
+ 
   );
 }
 

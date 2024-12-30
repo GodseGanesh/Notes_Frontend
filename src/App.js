@@ -4,20 +4,21 @@ import NotesListPage from "./pages/NotesListPage";
 import Notepage from "./pages/Notepage";
 import Header from "./compoents/Header";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Router>
       <div className="container dark">
-        <div className="app">
-          <Header />
+       
         <Routes>
           
         <Route path="/" exact Component={NotesListPage} />
         <Route path="/note/:noteId" Component={Notepage} />
         <Route path="/register" Component={Register} />
+        <Route path="/login" Component={Login} />
         </Routes>
-        </div>
+       
       </div>
     </Router>
   );
