@@ -3,6 +3,7 @@ import "./App.css";
 import NotesListPage from "./pages/NotesListPage";
 import Notepage from "./pages/Notepage";
 import Header from "./compoents/Header";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           
         <Route path="/" exact Component={NotesListPage} />
         <Route path="/note/:noteId" Component={Notepage} />
+        <Route path="/register" Component={Register} />
         </Routes>
         </div>
       </div>
