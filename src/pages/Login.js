@@ -10,7 +10,7 @@ function Login() {
     };
 
     try {
-      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/login", {
+      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

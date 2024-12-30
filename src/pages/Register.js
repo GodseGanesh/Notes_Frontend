@@ -14,7 +14,7 @@ function Register() {
     };
 
     try {
-      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/register", {
+      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
