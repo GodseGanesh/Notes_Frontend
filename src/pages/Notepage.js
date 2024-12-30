@@ -36,7 +36,7 @@ function Notepage(history) {
   let getNote = async () => {
     if (noteId === "new") return;
 
-    let response = await fetch(`https://ganeshrgodse.pythonanywhere.com/api/note/${noteId}/`);
+    let response = await fetch(`https://ganeshgodse19.pythonanywhere.com/api/note/${noteId}/`);
 
     let data = await response.json();
 
@@ -44,7 +44,7 @@ function Notepage(history) {
   };
 
   let updateNote = async () => {
-    fetch(`https://ganeshrgodse.pythonanywhere.com/api/note/${noteId}/`, {
+    fetch(`https://ganeshgodse19.pythonanywhere.com/api/note/${noteId}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function Notepage(history) {
 
 
   let deleteNote = () => {
-    fetch(`https://ganeshrgodse.pythonanywhere.com/api/note/${noteId}/`, {
+    fetch(`https://ganeshgodse19.pythonanywhere.com/api/note/${noteId}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function Notepage(history) {
   };
 
   let createNote = async () => {
-    fetch('https://ganeshrgodse.pythonanywhere.com/api/notes/', {
+    fetch('https://ganeshgodse19.pythonanywhere.com/api/notes/', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
