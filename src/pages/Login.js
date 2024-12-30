@@ -10,7 +10,7 @@ function Login() {
     };
 
     try {
-      const response = await fetch("https://your-backend-url/register", {
+      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
