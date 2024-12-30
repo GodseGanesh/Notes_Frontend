@@ -16,7 +16,7 @@ function NotesListPage() {
     },[])
 
     let getNotes = async () => {
-        let response = await fetch('https://ganeshrgodse.pythonanywhere.com/api/notes')
+        let response = await fetch('https://ganeshgodse19.pythonanywhere.com/api/notes')
         let data = await response.json()
         console.log(data)
         console.log(response)
