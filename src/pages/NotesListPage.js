@@ -13,7 +13,7 @@ function NotesListPage() {
     useEffect (()=>{
         getNotes()
 
-    },[])
+    },[notes])
 
     let getNotes = async () => {
         let response = await fetch('https://ganeshgodse19.pythonanywhere.com/api/notes')
