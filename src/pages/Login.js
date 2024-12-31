@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/tailwind.css";
+import UserContext from "../context/UserContext";
 
 function Login() {
+  const {setUser} = useContext(UserContext)
+
   let login_user = async (e) => {
     e.preventDefault();
     const formData = {
@@ -21,7 +24,8 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         console.log("User registered successfully:", data);
-        // Redirect to login page
+        // Redirect to main page
+        setUser(data.user ? data.user : console.log("no user found") )
         window.location.href = "/";
       } else {
         console.error("Error registering user:", response.statusText);

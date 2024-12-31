@@ -5,9 +5,11 @@ import Notepage from "./pages/Notepage";
 import Header from "./compoents/Header";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import UserContexrProvider from "./context/UserContexrProvider";
 
 function App() {
   return (
+    <UserContexrProvider>
     <Router>
       <div className="container dark">
        
@@ -21,6 +23,7 @@ function App() {
        
       </div>
     </Router>
+    </UserContexrProvider>
   );
 }
 
