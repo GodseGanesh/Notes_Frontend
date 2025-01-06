@@ -8,19 +8,23 @@ function Register() {
     const formData = {
       username: e.target.username.value,
       password: e.target.password.value,
+      confirm_password: e.target.confirm_password.value,
       first_name: e.target.first_name.value,
       last_name: e.target.last_name.value,
       email: e.target.email.value,
     };
 
     try {
-      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://ganeshgodse19.pythonanywhere.com/api/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -28,7 +32,8 @@ function Register() {
         // Redirect to login page
         window.location.href = "/login";
       } else {
-        console.error("Error registering user:", response.statusText);
+        const errorData = await response.json();
+        console.error("Error registering user:", errorData);
       }
     } catch (error) {
       console.error("Request failed:", error);
@@ -126,6 +131,34 @@ function Register() {
               required
             />
           </div>
+
+          {/* Confirm Password */}
+          <div>
+            <label
+              htmlFor="confirm_password"
+              className="block text-sm font-medium text-gray-300"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              className="mt-1 block w-full px-4 py-2 border border-gray-700 bg-gray-900 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#f68657] focus:border-transparent"
+              required
+            />
+          </div>
+
+          {/* Error Messages */}
+          {errors && (
+            <div className="text-red-500 text-sm">
+              {Object.entries(errors).map(([key, value]) => (
+                <p key={key}>
+                  <strong>{key}:</strong> {value}
+                </p>
+              ))}
+            </div>
+          )}
 
           {/* Submit Button */}
           <div>

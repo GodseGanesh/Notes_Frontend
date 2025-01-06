@@ -5,11 +5,11 @@ import Notepage from "./pages/Notepage";
 import Header from "./compoents/Header";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import UserContexrProvider from "./context/UserContexrProvider";
+import UserContextProvider from "./context/UserContextProvider";
 
 function App() {
   return (
-    <UserContexrProvider>
+    <UserContextProvider>
     <Router>
       <div className="container dark">
        
@@ -23,7 +23,7 @@ function App() {
        
       </div>
     </Router>
-    </UserContexrProvider>
+    </UserContextProvider>
   );
 }
 
