@@ -13,7 +13,7 @@ function Login() {
     };
 
     try {
-      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/api/login", {
+      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/api/login/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,12 +23,12 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("User registered successfully:", data);
+        console.log("User logged in successfully:", data);
         // Redirect to main page
         setUser(data.user ? data.user : console.log("no user found") )
         window.location.href = "/";
       } else {
-        console.error("Error registering user:", response.statusText);
+        console.error("Error loging user:", response.statusText);
       }
     } catch (error) {
       console.error("Request failed:", error);
