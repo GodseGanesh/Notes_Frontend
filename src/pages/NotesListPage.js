@@ -23,25 +23,25 @@ function NotesListPage() {
   };
 
   return (
-  
-      <div className="app">
-        <Header />
-        <div className="notes">
-          <div className="notes-header">
-            <h2 className="notes-title">&#9782; Notes</h2>
-            <p className="notes-count">{notes.length}</p>
-          </div>
-
-          <div className="notes-list">
-            {notes.map((note, index) => (
-              <ListItem key={index} note={note} />
-            ))}
-          </div>
-
-          <AddNote />
+    <div className="app">
+      <Header />
+      <div className="notes">
+        <div className="notes-header">
+          <h2 className="notes-title">&#9782; Notes</h2>
+          <p className="notes-count">{notes.length}</p>
         </div>
+
+        <div className="notes-list">
+          {notes.length === 0 ? (
+            <p className="no-notes-message">No notes available. Add some!</p>
+          ) : (
+            notes.map((note, index) => <ListItem key={index} note={note} />)
+          )}
+        </div>
+
+        <AddNote />
       </div>
-   
+    </div>
   );
 }
 
