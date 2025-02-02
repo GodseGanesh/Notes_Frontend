@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import ListItem from "../compoents/ListItem";
 import AddNote from "../compoents/AddNote";
 import Header from "../compoents/Header";
@@ -10,16 +8,32 @@ function NotesListPage() {
 
   useEffect(() => {
     getNotes();
-  }, [notes]);
+  }, []);
 
   let getNotes = async () => {
-    let response = await fetch(
-      "https://ganeshgodse19.pythonanywhere.com/api/notes"
-    );
-    let data = await response.json();
-    console.log(data);
-    console.log(response);
-    setNotes(data);
+    try {
+      let response = await fetch(
+        "https://ganeshgodse19.pythonanywhere.com/api/notes"
+      );
+
+      if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        // Check if the data is an array
+        if (Array.isArray(data)) {
+          setNotes(data); // Set notes if data is an array
+        } else {
+          setNotes([]); // Set an empty array if the data is not an array
+          console.error("Data is not an array:", data);
+        }
+      } else {
+        console.error("Failed to fetch notes:", response.statusText);
+        setNotes([]); // Ensure that notes is set to an empty array if the request fails
+      }
+    } catch (error) {
+      console.error("Request failed:", error);
+      setNotes([]); // Set to empty array on error
+    }
   };
 
   return (
