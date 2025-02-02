@@ -1,13 +1,55 @@
-import React from 'react'
-import { ReactComponent as AddIcon } from '../assets/add.svg'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
 
-function AddNote() {
+function AddNewNote() {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newNote = {
+      title,
+      content,
+    };
+
+    try {
+      const response = await fetch("https://ganeshgodse19.pythonanywhere.com/api/notes/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newNote),
+      });
+
+      if (response.ok) {
+        // Redirect or handle success
+        console.log("Note added successfully");
+      } else {
+        console.error("Error adding note:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Request failed:", error);
+    }
+  };
+
   return (
-    <Link to="/note/new" className="floating-button">
-        <AddIcon />
-    </Link>
-  )
+    <form onSubmit={handleSubmit} className="add-note-form">
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Note Title"
+        required
+      />
+      <textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="Note Content"
+        required
+      ></textarea>
+      <button type="submit">Add Note</button>
+    </form>
+  );
 }
 
-export default AddNote
+export default AddNewNote;
